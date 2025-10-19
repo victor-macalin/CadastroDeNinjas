@@ -1,6 +1,10 @@
-package dev.java10x.cadastroDeNinjas;
+package dev.java10x.cadastroDeNinjas.Ninjas.Controller.Service;
 
+import dev.java10x.cadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
+
+import java.security.PrivilegedAction;
+import java.util.List;
 
 @Entity
 @Table(name = "tb-cadastro")
@@ -11,6 +15,11 @@ public class NinjaModel {
     private String name;
     private String email;
     private int age;
+//    Essa anotacao sigifica que varios elementos dessa tabela podem
+//    ser atribuidos, para um elemento da outra tabela
+    @ManyToOne
+    @JoinColumn(name = "missoes_id")
+    private List<NinjaModel> ninjas;
 
     public NinjaModel() {
     }
