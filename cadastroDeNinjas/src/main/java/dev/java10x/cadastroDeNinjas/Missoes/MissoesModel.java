@@ -3,6 +3,7 @@ package dev.java10x.cadastroDeNinjas.Missoes;
 import dev.java10x.cadastroDeNinjas.Ninjas.Controller.Service.NinjaModel;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Scanner;
 
 @Entity
@@ -13,12 +14,20 @@ public class MissoesModel {
     private long id;
     private String nomeDaMissao;
     private DificuldadeMissoes rank;
-//    Essa anotacao significa que um elemento pode ser atribuido para varios elemntos de outras tabelas.
+    //    Essa anotacao significa que um elemento pode ser atribuido para varios elementos de outras tabelas.
     @OneToMany(mappedBy = "missoes")
-    private NinjaModel ninja;
+    private List<NinjaModel> ninjas;
 
     public MissoesModel() {
 
+    }
+
+    public List<NinjaModel> getNinjas() {
+        return ninjas;
+    }
+
+    public void setNinjas(List<NinjaModel> ninjas) {
+        this.ninjas = ninjas;
     }
 
     public DificuldadeMissoes getRank() {
@@ -29,19 +38,11 @@ public class MissoesModel {
         this.rank = rank;
     }
 
-    public NinjaModel getNinja() {
-        return ninja;
-    }
-
-    public void setNinja(NinjaModel ninja) {
-        this.ninja = ninja;
-    }
-
     public MissoesModel(long id, String nomeDaMissao, DificuldadeMissoes rank, NinjaModel ninja) {
         this.id = id;
         this.nomeDaMissao = nomeDaMissao;
         this.rank = rank;
-        this.ninja = ninja;
+        this.ninjas = ninjas;
     }
 
     public long getId() {
