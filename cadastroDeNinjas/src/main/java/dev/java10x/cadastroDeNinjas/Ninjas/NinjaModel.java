@@ -1,4 +1,4 @@
-package dev.java10x.cadastroDeNinjas.Ninjas.Controller.Service;
+package dev.java10x.cadastroDeNinjas.Ninjas;
 
 import dev.java10x.cadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
@@ -17,9 +17,14 @@ public class NinjaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
+
     private String name;
+
+    @Column(unique = true)
     private String email;
+
     private int age;
 
 

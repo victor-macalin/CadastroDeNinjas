@@ -1,17 +1,16 @@
 package dev.java10x.cadastroDeNinjas.Missoes;
 
-import dev.java10x.cadastroDeNinjas.Ninjas.Controller.Service.NinjaModel;
+import dev.java10x.cadastroDeNinjas.Ninjas.NinjaModel;
 import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.Scanner;
 
 @Entity
 @Table(name = "tb_missoes")
 public class MissoesModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String nomeDaMissao;
     private DificuldadeMissoes rank;
     //    Essa anotacao significa que um elemento pode ser atribuido para varios elementos de outras tabelas.
