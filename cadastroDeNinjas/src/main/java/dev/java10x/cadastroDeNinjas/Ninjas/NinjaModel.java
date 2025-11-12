@@ -10,21 +10,23 @@ import java.security.PrivilegedAction;
 import java.util.List;
 @Data
 @Entity
-@Table(name = "tb-cadastro")
+@Table(name = "TB_CADASTRO")
 @NoArgsConstructor
 @AllArgsConstructor
 public class NinjaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "nome")
     private String name;
 
     @Column(unique = true)
     private String email;
 
+    @Column(name = "idade")
     private int age;
 
 
