@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 public class MissoesController {
 
     // Adicionar ninja (CREATE)
-    @PostMapping("criarMissao")
+    @PostMapping("/criarMissao")
     public String ninjaCriado() {
         return "missao criada";
     }
