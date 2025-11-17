@@ -13,13 +13,15 @@ public class NinjaService {
     public NinjaService(NinjaRepository ninjaRepository) {
         this.ninjaRepository = ninjaRepository;
     }
-//    Listar todos os ninjas
-    public List<NinjaModel> listarninjas (){
+
+    //    Listar todos os ninjas
+    public List<NinjaModel> listarninjas() {
         return ninjaRepository.findAll();
     }
-//    listar por id
-public NinjaModel listarNinjasPorId (Long id) {
-    Optional<NinjaModel> ninjaPorId = ninjaRepository.findById(id);
-    return ninjaPorId.orElse(null);
-}
+
+    //    listar por id
+    public NinjaModel listarNinjasPorId(Long id) {
+        Optional<NinjaModel> ninjaPorId = ninjaRepository.findById(id);
+        return ninjaPorId.orElse(null);
+    }
 }
