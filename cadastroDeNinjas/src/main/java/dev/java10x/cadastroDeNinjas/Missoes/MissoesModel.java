@@ -1,5 +1,6 @@
 package dev.java10x.cadastroDeNinjas.Missoes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.java10x.cadastroDeNinjas.Ninjas.NinjaModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,7 @@ public class MissoesModel {
     private String dificuldade;
     //    Essa anotacao significa que um elemento pode ser atribuido para varios elementos de outras tabelas.
     @OneToMany(mappedBy = "missoes")
+    @JsonIgnore
     private List<NinjaModel> ninjas;
 
 }
