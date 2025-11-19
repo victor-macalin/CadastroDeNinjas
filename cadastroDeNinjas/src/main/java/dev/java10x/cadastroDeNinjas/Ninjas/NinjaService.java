@@ -1,6 +1,7 @@
 package dev.java10x.cadastroDeNinjas.Ninjas;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,4 +29,10 @@ public class NinjaService {
     public NinjaModel criarninja (NinjaModel ninja) {
         return ninjaRepository.save(ninja);
     }
+//    Deletar ninja
+    public void deletarNinja (@PathVariable Long id) {
+        ninjaRepository.deleteById(id);
+    }
+//    Atualizar ninja
+
 }
