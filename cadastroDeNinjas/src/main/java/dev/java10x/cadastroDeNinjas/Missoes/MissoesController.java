@@ -2,37 +2,43 @@ package dev.java10x.cadastroDeNinjas.Missoes;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/missoes")
 public class MissoesController {
+    private MissoesService missoesService;
 
-    // Adicionar ninja (CREATE)
+    public MissoesController(MissoesService missoesService) {
+        this.missoesService = missoesService;
+    }
+
+    // Adicionar missao (CREATE)
     @PostMapping("/criarMissao")
     public String ninjaCriado() {
         return "missao criada";
     }
 
-    //Mostrar todos ninjas (READ)
+    //Mostrar todas as missoes (READ)
     @GetMapping("/mostrarMissoes")
-    public String mostrarTodosOsninjas() {
-        return "mostrar todas as missoes";
+    public List<MissoesModel> mostrarMissoes() {
+        return missoesService.listarMissoes();
     }
 
-
-    //Mostrar ninja Por ID (READ)
-    @GetMapping("/missoesPorID")
-    public String mostrarPorId() {
-        return "mostrar missoes por id";
+    //Mostrar missao Por ID (READ)
+    @GetMapping("/missoesPorID/{id}")
+    public MissoesModel mostrarPorId(@PathVariable Long id) {
+        return missoesService.missaoPorId(id);
     }
 
-    //Alterar dados dos ninjas (UPDATE)
+    //Alterar missoes (UPDATE)
     @PutMapping("/atualizarMissoesID")
     public String alterarDadosninjas() {
         return "Alterando missoes";
     }
 
 
-    //Deletar ninja (DELETE)
+    //Deletar missao (DELETE)
     @DeleteMapping("/deletarMissoesID")
     public String deletarninjasId() {
         return "deletando missao";
