@@ -32,9 +32,9 @@ public class MissoesController {
     }
 
     //Alterar missoes (UPDATE)
-    @PutMapping("/atualizarMissoesID")
-    public String alterarDadosninjas() {
-        return "Alterando missoes";
+    @PutMapping("/atualizarMissoesID/{id}")
+    public MissoesModel alterarDadosninjas(@PathVariable Long id, @RequestBody MissoesModel missoesAtualizada) {
+        return missoesService.atualizarMissoesId(id, missoesAtualizada);
     }
 
 

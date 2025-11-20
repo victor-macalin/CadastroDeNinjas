@@ -1,11 +1,11 @@
 package dev.java10x.cadastroDeNinjas.Ninjas;
 
+import lombok.Data;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
-
 @Service
 public class NinjaService {
 
@@ -25,14 +25,24 @@ public class NinjaService {
         Optional<NinjaModel> ninjaPorId = ninjaRepository.findById(id);
         return ninjaPorId.orElse(null);
     }
-//    criar ninja
-    public NinjaModel criarninja (NinjaModel ninja) {
+
+    //    criar ninja
+    public NinjaModel criarninja(NinjaModel ninja) {
         return ninjaRepository.save(ninja);
     }
-//    Deletar ninja
-    public void deletarNinja (@PathVariable Long id) {
+
+    //    Deletar ninja
+    public void deletarNinja(@PathVariable Long id) {
         ninjaRepository.deleteById(id);
     }
-//    Atualizar ninja
 
+    //    Atualizar ninja
+    public NinjaModel atualizaNinja(Long id, NinjaModel ninjanovo) {
+        if (ninjaRepository.existsById(id)) {
+            ninjanovo.setId(id);
+            return ninjaRepository.save(ninjanovo);
+        }
+        return null;
+
+    }
 }

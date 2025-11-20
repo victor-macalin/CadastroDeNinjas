@@ -1,5 +1,6 @@
 package dev.java10x.cadastroDeNinjas.Missoes;
 
+import org.springframework.boot.autoconfigure.mustache.MustacheAutoConfiguration;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -29,6 +30,13 @@ public class MissoesService {
     }
 
 //    Atualizar missoes
+    public MissoesModel atualizarMissoesId (Long id, MissoesModel missoesAtualizada) {
+        if (missoesRepository.existsById(id)){
+            missoesAtualizada.setId(id);
+            return missoesRepository.save(missoesAtualizada);
+        }
+        return null;
+    }
 
 //    Deletar missoes
 
