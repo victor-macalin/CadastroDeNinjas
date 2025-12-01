@@ -15,33 +15,33 @@ public class MissoesController {
 
     // Adicionar missao (CREATE)
     @PostMapping("/criarMissao")
-    public String ninjaCriado() {
-        return "missao criada";
+    public MissoesDTO ninjaCriado(@RequestBody MissoesDTO missao) {
+       return missoesService.create(missao);
     }
 
     //Mostrar todas as missoes (READ)
     @GetMapping("/mostrarMissoes")
-    public List<MissoesModel> mostrarMissoes() {
+    public List<MissoesDTO> mostrarMissoes() {
         return missoesService.listarMissoes();
     }
 
     //Mostrar missao Por ID (READ)
     @GetMapping("/missoesPorID/{id}")
-    public MissoesModel mostrarPorId(@PathVariable Long id) {
+    public MissoesDTO mostrarPorId(@PathVariable Long id) {
         return missoesService.missaoPorId(id);
     }
 
     //Alterar missoes (UPDATE)
     @PutMapping("/atualizarMissoesID/{id}")
-    public MissoesModel alterarDadosninjas(@PathVariable Long id, @RequestBody MissoesModel missoesAtualizada) {
+    public MissoesDTO alterarDadosninjas(@PathVariable Long id, @RequestBody MissoesDTO missoesAtualizada) {
         return missoesService.atualizarMissoesId(id, missoesAtualizada);
     }
 
 
     //Deletar missao (DELETE)
-    @DeleteMapping("/deletarMissoesID")
-    public String deletarninjasId() {
-        return "deletando missao";
+    @DeleteMapping("/deletarMissoesID/{id}")
+    public void deletarninjasId(@PathVariable Long id) {
+         missoesService.delete(id);
     }
 }
 
