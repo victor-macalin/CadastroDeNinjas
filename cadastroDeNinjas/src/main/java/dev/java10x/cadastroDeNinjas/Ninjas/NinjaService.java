@@ -53,7 +53,7 @@ public class NinjaService {
         Optional<NinjaModel> ninjaExistente = ninjaRepository.findById(id);
         if (ninjaExistente.isPresent()){
             NinjaModel ninjaModel = ninjaMapper.map(ninjanovo);
-            ninjanovo.setId(id);
+            ninjaModel.setId(id);
             NinjaModel ninjaSalvo = ninjaRepository.save(ninjaModel);
             return ninjaMapper.map(ninjaSalvo);
         }

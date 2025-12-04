@@ -1,5 +1,8 @@
 package dev.java10x.cadastroDeNinjas.Missoes;
 
+import dev.java10x.cadastroDeNinjas.Ninjas.NinjaDTO;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +18,10 @@ public class MissoesController {
 
     // Adicionar missao (CREATE)
     @PostMapping("/criarMissao")
-    public MissoesDTO ninjaCriado(@RequestBody MissoesDTO missao) {
-       return missoesService.create(missao);
+    public ResponseEntity<String> ninjaCriado(@RequestBody MissoesDTO missao) {
+       MissoesDTO missoesDTO = missoesService.create(missao);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Missao criada com sucesso");
     }
 
     //Mostrar todas as missoes (READ)
@@ -40,8 +45,15 @@ public class MissoesController {
 
     //Deletar missao (DELETE)
     @DeleteMapping("/deletarMissoesID/{id}")
-    public void deletarninjasId(@PathVariable Long id) {
-         missoesService.delete(id);
+    public ResponseEntity<String> deletarninjasId(@PathVariable Long id) {
+         if (missoesService.missaoPorId(id) != null){
+             missoesService.delete(id);
+             return ResponseEntity.ok("Missao deletada com sucesso");
+         }else {
+             return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                     .body("O ID digitado e invalido ou nao existe!");
+         }
+
     }
 }
 
