@@ -10,6 +10,7 @@ import java.util.List;
 @Table(name = "TB_CADASTRO")
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "missoes")
 public class NinjaModel {
 
     @Id
@@ -22,9 +23,6 @@ public class NinjaModel {
     private String email;
 
     private int idade;
-
-
-
 
     @ManyToOne
     @JoinColumn(name = "missoes_id")
