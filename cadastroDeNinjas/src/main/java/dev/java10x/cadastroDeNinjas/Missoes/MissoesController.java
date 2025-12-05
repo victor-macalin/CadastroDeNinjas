@@ -26,20 +26,40 @@ public class MissoesController {
 
     //Mostrar todas as missoes (READ)
     @GetMapping("/mostrarMissoes")
-    public List<MissoesDTO> mostrarMissoes() {
-        return missoesService.listarMissoes();
+    public ResponseEntity <?> mostrarMissoes() {
+        List<MissoesDTO> missoes = missoesService.listarMissoes();
+        if (missoes != null) {
+            return ResponseEntity.ok(missoes);
+        }else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Nao ha nenhum ninja nos registros");
+        }
     }
 
     //Mostrar missao Por ID (READ)
     @GetMapping("/missoesPorID/{id}")
-    public MissoesDTO mostrarPorId(@PathVariable Long id) {
-        return missoesService.missaoPorId(id);
+    public ResponseEntity<?> mostrarPorId(@PathVariable Long id) {
+        MissoesDTO missao = missoesService.missaoPorId(id);
+        if (missao != null) {
+            return ResponseEntity.ok(missao.getNomeDaMissao());
+        }else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Ninja com o id " + id + " nao foi cadastrado");
+        }
+
     }
 
     //Alterar missoes (UPDATE)
     @PutMapping("/atualizarMissoesID/{id}")
-    public MissoesDTO alterarDadosninjas(@PathVariable Long id, @RequestBody MissoesDTO missoesAtualizada) {
-        return missoesService.atualizarMissoesId(id, missoesAtualizada);
+    public ResponseEntity <String> alterarDadosninjas(@PathVariable Long id, @RequestBody MissoesDTO missoesAtualizada) {
+        MissoesDTO missao = missoesService.atualizarMissoesId(id, missoesAtualizada);
+        if (missao != null) {
+            return ResponseEntity.ok("Ninja atualizado com sucesso");
+        }else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Ninja com o id " + id + " nao foi cadastrado");
+        }
+
     }
 
 
