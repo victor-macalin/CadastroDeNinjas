@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 @Service
 public class MissoesService {
 
-    private MissoesRepository missoesRepository;
-    private MissoesMapper missoesMapper;
+    private final MissoesRepository missoesRepository;
+    private final MissoesMapper missoesMapper;
 
     public MissoesService(MissoesRepository missoesRepository, MissoesMapper missoesMapper) {
         this.missoesRepository = missoesRepository;
@@ -56,5 +56,4 @@ public class MissoesService {
     public void delete(@PathVariable Long id) {
         missoesRepository.deleteById(id);
     }
-
 }
